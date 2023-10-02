@@ -73,6 +73,79 @@ bool search(Node *head, int key)
     }
     return false;
 }
+// agar first he delte krna hai to uske liye n-1 term to hoga he nahe
+void deleteAthead(Node *&head)
+{
+    Node *todelete = head;
+    head = head->next;
+    delete todelete;
+}
+void deletion(Node *&head, int val)
+{
+
+    if (head == NULL)
+    {
+        return;
+    }
+    if (head->next == NULL)
+    {
+        // pehla he last element hai
+        deleteAthead(head);
+        return;
+    }
+    if (head->data == val)
+    {
+        deleteAthead(head);
+        return;
+    }
+    Node *temp = head;
+    // hme temp ke next ko dudna hai uska
+    // link delete krne ke liye
+    // 1->2->3->4->NULL
+    while (temp->next->data != val)
+    {
+        //    agar 3 ko delete krna hai to
+        // val tak jaenge
+        // uske ek peeche tak
+        temp = temp->next;
+    }
+    Node *todelete = temp->next;
+    temp->next = temp->next->next;
+    delete (todelete);
+}
+
+Node *reverse(Node *&head)
+{
+    Node *prev = NULL;
+    Node *curr = head;
+    Node *next;
+    while (curr != NULL)
+    {
+        next = curr->next;
+        curr->next = prev;
+        // aage badaenge
+        prev = curr;
+        curr = next;
+        //    next ko upar aage bdaya hai
+    }
+    // prev=head;
+    return prev;
+}
+
+Node *reverseRecursive(Node *&head)
+{
+
+    if (head == NULL || head->next == NULL)
+    {
+
+        return head;
+    }
+
+    Node *newH = reverseRecursive(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return newH;
+}
 int main()
 {
     Node *head = NULL;
@@ -88,4 +161,10 @@ int main()
 
     cout << search(head, 20) << endl;
     cout << search(head, 99);
+
+    // Node *newHead = reverse(head);
+    // display(newHead);
+
+    Node *newHead = reverseRecursive(head);
+    display(newHead);
 }
