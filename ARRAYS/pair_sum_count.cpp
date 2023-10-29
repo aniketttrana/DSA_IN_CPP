@@ -2,7 +2,6 @@
 #include <vector>
 #include <bits/stdc++.h>
 using namespace std;
-
 void pair_sum(int arr1[], int size1, int k)
 {
     bool found = false;

@@ -40,7 +40,7 @@ void pair_sum(int arr1[], int size1, int k)
 }
 int main()
 {
-    int arr1[] = {1, 2, 3, 4, 5, 6};
+    int arr1[] = {1, 3, 7};
     int size1 = sizeof(arr1) / sizeof(arr1[0]);
 
     pair_sum(arr1, size1, 2);
